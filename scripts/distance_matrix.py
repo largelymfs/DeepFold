@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 #################################################################################
-#     File Name           :     gen_distance_matrices.py
+#     File Name           :     distance_matrix.py
 #     Created By          :     Qing Ye
 #     Creation Date       :     [2016-08-31 17:10]
-#     Last Modified       :     [2017-01-26 21:51]
+#     Last Modified       :     [2017-01-26 21:55]
 #     Description         :     generating distance matrix
 #################################################################################
 import sys
@@ -15,7 +15,7 @@ import scipy.spatial
 from Bio.PDB import PDBParser
 
 
-def build_distance_mat_for_one(pdb_path):
+def get_distance_matrix(pdb_path):
     parser = PDBParser()
     structure = parser.get_structure('structure', pdb_path).get_list()[0]
     residue_positions = get_residue_positions(structure)
@@ -41,6 +41,6 @@ def get_residue_positions(structure):
 
 
 if __name__ == '__main__':
-    mat = build_distance_mat_for_one('../examples/d2c5lc1.pdb')
+    mat = get_distance_matrix('../examples/d2c5lc1.pdb')
     print mat
 
