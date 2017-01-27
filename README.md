@@ -15,11 +15,11 @@ Create embeddings for a protein structure. Output a numpy embedding.
 
 positional arguments:
   pdb_file       an input pdb file
-    output_file    an output numpy embedding
+  output_file    an output numpy embedding
 
-    optional arguments:
-      -h, --help     show this help message and exit
-        --model model  the network model to load
+optional arguments:
+  -h, --help     show this help message and exit
+  --model model  the network model to load
 ```
 
 
