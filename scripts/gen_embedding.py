@@ -3,7 +3,7 @@
 #     File Name           :     gen_embedding.py
 #     Created By          :     yang
 #     Creation Date       :     [2017-01-26 21:54]
-#     Last Modified       :     [2017-01-26 22:53]
+#     Last Modified       :     [2017-01-26 23:01]
 #     Description         :      
 #################################################################################
 import argparse
@@ -26,6 +26,5 @@ if __name__=="__main__":
     model = DeepFold(max_length=max_length, projection_level=1)
     model.load_from_file(args.model)
     embedding = model.get_embedding(distance_matrix)
-    print embedding
 
     np.save(args.output_file, embedding)
