@@ -3,7 +3,7 @@
 #     File Name           :     distance_matrix.py
 #     Created By          :     Qing Ye
 #     Creation Date       :     [2016-08-31 17:10]
-#     Last Modified       :     [2017-01-26 21:55]
+#     Last Modified       :     [2017-01-26 22:10]
 #     Description         :     generating distance matrix
 #################################################################################
 import sys
@@ -42,5 +42,4 @@ def get_residue_positions(structure):
 
 if __name__ == '__main__':
     mat = get_distance_matrix('../examples/d2c5lc1.pdb')
-    print mat
 
