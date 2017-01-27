@@ -3,22 +3,29 @@
 #     File Name           :     gen_embedding.py
 #     Created By          :     yang
 #     Creation Date       :     [2017-01-26 21:54]
-#     Last Modified       :     [2017-01-26 22:37]
+#     Last Modified       :     [2017-01-26 22:53]
 #     Description         :      
 #################################################################################
+import argparse
+import os
+import numpy as np
+
 from network import DeepFold
 from distance_matrix import get_distance_matrix
-import numpy as np
 from network import DeepFold
 
 if __name__=="__main__":
-    distance_matrix = get_distance_matrix("./../examples/d2c5lc1.pdb").astype("float32")
+    parser = argparse.ArgumentParser(description='Create embeddings for a protein structure. Output a numpy embedding.')
+    parser.add_argument('pdb_file', metavar='pdb_file', help='an input pdb file')
+    parser.add_argument('output_file', metavar='output_file', help='an output numpy embedding')
+    parser.add_argument('--model', metavar='model', default=os.path.join(os.path.dirname(__file__), './../models/deepfold.model'), help='the network model to load')
+    args = parser.parse_args()
+
     max_length = 256
-    model_file_name = "./../models/deepfold.model"
-    model = DeepFold(max_length = max_length, projection_level = 1)
-    model.load_from_file(model_file_name)
-    print model.get_embedding(distance_matrix)
+    distance_matrix = get_distance_matrix(args.pdb_file).astype("float32")[:256, :256]
+    model = DeepFold(max_length=max_length, projection_level=1)
+    model.load_from_file(args.model)
+    embedding = model.get_embedding(distance_matrix)
+    print embedding
 
-
-    
-
+    np.save(args.output_file, embedding)
