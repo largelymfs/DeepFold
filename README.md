@@ -8,6 +8,8 @@ Learning structural motif representations for efficient protein structure search
 * Add the variable `floatX = float32` in your `~/.theanorc` config file under the `[global]` section.
 
 ## Usage
+The script provides an example of generating an embedding for a single PDB file. PDB file of any length can be used but for maximum efficiency make sure the model size can be fit in the VRAM. The script is not efficient for generating a large number of embeddings due to the overhead. For batch processing, please call the get\_embedding function of a DeepFold instance inside the network module.
+
 ```
 python ./scripts/gen_embedding.py [-h] [--model model] pdb_file output_file
 
@@ -21,5 +23,3 @@ optional arguments:
   -h, --help     show this help message and exit
   --model model  the network model to load
 ```
-
-
