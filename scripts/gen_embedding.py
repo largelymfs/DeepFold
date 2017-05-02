@@ -21,9 +21,8 @@ if __name__=="__main__":
     parser.add_argument('--model', metavar='model', default=os.path.join(os.path.dirname(__file__), './../models/deepfold.model'), help='the network model to load')
     args = parser.parse_args()
 
-    max_length = 256
-    distance_matrix = get_distance_matrix(args.pdb_file).astype("float32")[:256, :256]
-    model = DeepFold(max_length=max_length, projection_level=1)
+    distance_matrix = get_distance_matrix(args.pdb_file).astype("float32")
+    model = DeepFold(max_length=distance_matrix.shape[0], projection_level=1)
     model.load_from_file(args.model)
     embedding = model.get_embedding(distance_matrix)
 
